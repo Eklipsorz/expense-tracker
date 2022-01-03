@@ -12,8 +12,10 @@ const categories = require('./category.json').results
 
 db.on('open', async () => {
 
-
-  await categoryModel.create(categories)
+  const hasCategories = (await categoryModel.find({}).lean().then()).length
+  if (!hasCategories) {
+    await categoryModel.create(categories)
+  }
   console.log('All type of categories have been built')
   db.close()
 
