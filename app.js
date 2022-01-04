@@ -4,6 +4,8 @@ const exphbs = require('express-handlebars')
 
 const methodOverride = require('method-override')
 
+const routes = require('./routes')
+
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
@@ -35,9 +37,7 @@ app.use(methodOverride('_method'))
 
 
 // define application layer routes
-app.use('/', (req, res) => {
-  res.render('index')
-})
+app.use('/', routes)
 
 // start to listen at 3000
 app.listen(port, () => {

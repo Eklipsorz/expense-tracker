@@ -1,0 +1,55 @@
+
+body {
+  /* positioning */
+  position: relative;
+
+
+  /* font or other */
+  background:url('https://res.cloudinary.com/dqfxgtyoi/image/upload/v1641279166/github/expense-tracker/expenseTrackerCover_vsvnly.jpg') no-repeat center center fixed;
+ -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  overflow-x: hidden;
+}
+
+
+
+.entry-form {
+  /* Box Model */
+  border-radius: 25px;
+
+  /* font or other */
+  background: #F8F9FA;
+}
+
+
+
+
+.form-control::placeholder {
+  color: #aaaaaa;
+  font-size: 0.8rem;
+}
+
+.btn-major {
+  background-color: #9b4b4b;
+  color: white;
+}
+
+.form-control:focus {
+  box-shadow: none;
+  border-color: #ced4da;
+}
+
+
+header {
+  overflow: hidden;
+}
+
+.navbar .navbar-brand {
+  color: #FFFFFF;
+}
+
+.navbar .navbar-brand:hover {
+  opacity: .5;
+}
