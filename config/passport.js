@@ -41,6 +41,7 @@ function usePassport(app) {
     profileFields: ['email', 'displayName']
   }, (accessToken, refreshToken, profile, done) => {
 
+
     const { name, email } = profile._json
 
     userModel.findOne({ email })
@@ -51,7 +52,7 @@ function usePassport(app) {
 
         return bcrypt
           .genSalt(10)
-          .then(salt => bcrypt.hash(newPassword, hash))
+          .then(salt => bcrypt.hash(newPassword, salt))
           .then(hash => {
             return userModel.create({
               name,
