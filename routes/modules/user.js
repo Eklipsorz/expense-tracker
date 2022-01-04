@@ -1,6 +1,8 @@
 const express = require('express')
 const router = express.Router()
 
+const passport = require('passport')
+
 
 
 router.get('/login', (req, res) => {
@@ -9,9 +11,11 @@ router.get('/login', (req, res) => {
 
 
 
-router.post('/login', (req, res) => {
-
-})
+router.post('/login', passport.authenticate('local', {
+  failureFlash: true,
+  failureRedirect: '/users/login',
+  successRedirect: '/'
+}))
 
 
 router.get('/register', (req, res) => {

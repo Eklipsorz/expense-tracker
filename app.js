@@ -3,6 +3,9 @@ const exphbs = require('express-handlebars')
 
 
 const methodOverride = require('method-override')
+const session = require('express-session')
+const usePassport = require('./config/passport')
+
 
 const routes = require('./routes')
 
@@ -10,6 +13,8 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
 
+const mongoose = require('mongoose')
+const db = require('./config/mongoose')
 
 // define a port for web application
 const port = process.env.PORT || 3000
@@ -28,6 +33,13 @@ app.engine(".hbs", exphbs({
 
 app.set("view engine", ".hbs")
 
+
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false
+}))
+
 // define a path for all static files
 app.use(express.static("public"))
 
@@ -35,6 +47,7 @@ app.use(express.static("public"))
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 
+usePassport(app)
 
 // define application layer routes
 app.use('/', routes)
