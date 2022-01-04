@@ -1,7 +1,10 @@
 const express = require('express')
 const router = express.Router()
 
+const userModel = require('../../models/userModel')
 const passport = require('passport')
+const bcrypt = require('bcryptjs/dist/bcrypt')
+
 
 
 
@@ -24,7 +27,58 @@ router.get('/register', (req, res) => {
 
 
 
-router.post('/login', (req, res) => {
+router.post('/register', (req, res) => {
+  const { name, email, password, confirmPassword } = req.body
+  const registerWarningMessages = []
+
+  if (!name || !email || !password || !confirmPassword) {
+    registerWarningMessages.push('Please input all fields')
+  }
+
+  if (password !== confirmPassword) {
+    registerWarningMessages.push('The passwords are not same')
+  }
+
+  if (registerWarningMessages.length) {
+    return res.render('register', {
+      layout: 'entryLayout',
+      registerWarningMessages,
+      name,
+      email,
+      password,
+      confirmPassword
+    })
+  }
+
+
+  return userModel.findOne({ email })
+    .then(user => {
+      if (user) {
+        registerWarningMessages.push('The email has been registered')
+        return res.render('register', {
+          layout: 'entryLayout',
+          registerWarningMessages,
+          name,
+          email,
+          password,
+          confirmPassword
+        })
+      }
+
+      return bcrypt
+        .genSalt(10)
+        .then(salt => bcrypt.hash(password, salt))
+        .then(hash => {
+          return userModel.create({
+            name,
+            email,
+            password: hash
+          })
+        })
+        .then(() => res.redirect('/users/login'))
+        .catch(error => console.log(error))
+    })
+
 
 })
 
