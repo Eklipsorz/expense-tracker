@@ -19,3 +19,14 @@
 </div>
 {{/each}}
 {{/if}}
+
+
+
+{{#if logoutSuccessMessage}}
+<div class="alert alert-success alert-dimissible fade show" role="alert">
+  {{ logoutSuccessMessage }}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{{/if}}
