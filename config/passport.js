@@ -18,8 +18,6 @@ function usePassport(app) {
     passReqToCallback: true,
     usernameField: 'email'
   }, (req, email, password, done) => {
-
-    console.log('email: ', email)
     userModel.findOne({ email })
       .then((user) => {
         if (!user) return done(null, false, { message: 'The email is not registered!!' })
