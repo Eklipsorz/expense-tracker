@@ -4,8 +4,11 @@ const exphbs = require('express-handlebars')
 
 const methodOverride = require('method-override')
 const session = require('express-session')
-const usePassport = require('./config/passport')
 const flash = require('connect-flash')
+
+
+const usePassport = require('./config/passport')
+const handelbarsOptions = require('./config/handlebars')
 
 const routes = require('./routes')
 
@@ -16,8 +19,6 @@ if (process.env.NODE_ENV !== 'production') {
 const mongoose = require('mongoose')
 const db = require('./config/mongoose')
 
-
-
 // define a port for web application
 const port = process.env.PORT || 3000
 
@@ -26,14 +27,12 @@ const port = process.env.PORT || 3000
 const app = express()
 
 // settings for view engine 
-app.engine(".hbs", exphbs({
-  extname: ".hbs",
-  layoutsDir: process.cwd() + "/views/layouts",
-  defaultLayout: "main",
-  partialDir: "views/partials",
-}))
+app.engine(".hbs", exphbs(handelbarsOptions))
+
 
 app.set("view engine", ".hbs")
+
+// make handlebars engine load extra helpers
 
 
 app.use(session({

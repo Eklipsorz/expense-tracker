@@ -5,9 +5,6 @@ const usersRoutes = require('./modules/user')
 const authRoutes = require('./modules/auth')
 
 
-
-
-
 router.use('/auth', authRoutes)
 router.use('/users', usersRoutes)
 
