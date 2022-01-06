@@ -9,9 +9,6 @@
   </select>
 </form>
 
-
-<p>{{currentCategoryItem.name}}</p>
-
 <div class="text-center my-2">
   <span class="totalAmount-title">總金額：</span>
   <span class="totalAmount">{{ totalAmount }}</span>
@@ -21,13 +18,11 @@
 <ul class="list-group mb-2 expense-list">
   {{#each records}}
   <div class="row mb-2">
-    <li class="list-group-item col-12 col-md-6 m-auto expense-list-item">
+    <li class="list-group-item col-lg-6 col-md-8 col-sm-12 col-10 m-auto expense-list-item">
 
-      <div class="d-flex justify-content-between align-items-center">
-
-        <div>
+      <div class="d-flex justify-content-between align-items-center row">
+        <div class="col-6">
           <i class="{{ this.icon }}"></i>
-
           <div class="d-inline-flex flex-column" style="vertical-align: middle;">
             <h3>{{ this.name }}</h3>
             <span>{{ this.date }}</span>
@@ -35,9 +30,9 @@
         </div>
 
 
-        <span>{{ this.amount }}</span>
-        <div>
-          <a class="btn btn-info">修改</a>
+        <div class="col-6 d-flex justify-content-end align-items-center">
+          <span class="mr-4">{{ this.amount }}</span>
+          <a class="btn btn-info mr-2">修改</a>
           <a class="btn btn-danger">刪除</a>
         </div>
       </div>

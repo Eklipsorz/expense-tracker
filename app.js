@@ -55,8 +55,8 @@ app.use('/', (req, res, next) => {
   res.locals.isAuthenticated = req.isAuthenticated
   res.locals.user = req.user
   res.locals.loginFailureMessage = req.flash('error')
+  res.locals.loginFirstWarningMessage = req.flash('loginfirst-warning-message')
   res.locals.logoutSuccessMessage = req.flash('logout-success-message')
-
 
   next()
 })

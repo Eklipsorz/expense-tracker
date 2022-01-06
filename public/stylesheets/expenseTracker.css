@@ -28,4 +28,17 @@
   vertical-align: middle;
 }
 
+.expense-list h3{
+
+  /* font or other */
+  font-size: 1.25rem;
+
+}
+
+.expense-list span{
+
+  /* font or other */
+  font-size: 1rem;
+
+}
 
