@@ -12,26 +12,28 @@
 
 <div class="text-center my-2">
   <span class="totalAmount-title">總金額：</span>
-  <span class="totalAmount">25260</span>
+  <span class="totalAmount">{{ totalAmount }}</span>
 </div>
 
+
 <ul class="list-group mb-2 expense-list">
+  {{#each records}}
   <div class="row mb-2">
     <li class="list-group-item col-12 col-md-6 m-auto expense-list-item">
 
       <div class="d-flex justify-content-between align-items-center">
 
         <div>
-          <i class="fas fa-home"></i>
+          <i class="{{ this.icon }}"></i>
 
           <div class="d-inline-flex flex-column" style="vertical-align: middle;">
-            <h3>午餐</h3>
-            <span>2019/04/23</span>
+            <h3>{{ this.name }}</h3>
+            <span>{{ this.date }}</span>
           </div>
         </div>
 
 
-        <span>60</span>
+        <span>{{ this.amount }}</span>
         <div>
           <a class="btn btn-info">修改</a>
           <a class="btn btn-danger">刪除</a>
@@ -41,31 +43,8 @@
 
     </li>
   </div>
-  <div class="row mb-2">
-    <li class="list-group-item col-12 col-md-6 m-auto expense-list-item">
+  {{/each}}
 
-      <div class="d-flex justify-content-between align-items-center">
-
-        <div>
-          <i class="fas fa-home"></i>
-
-          <div class="d-inline-flex flex-column" style="vertical-align: middle;">
-            <h3>午餐</h3>
-            <span>2019/04/23</span>
-          </div>
-        </div>
-
-
-        <span>60</span>
-        <div>
-          <a class="btn btn-info">修改</a>
-          <a class="btn btn-danger">刪除</a>
-        </div>
-      </div>
-
-
-    </li>
-  </div>
 </ul>
 
 <div class="row">
