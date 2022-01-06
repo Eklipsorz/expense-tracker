@@ -1,0 +1,31 @@
+.expense-list i {
+
+  /* font or other */
+  font-size: 1.8rem;
+}
+
+.expense-list .expense-list-item {
+  /* box model */
+  border-radius: 25px;
+  border: none;
+  box-shadow: 5px 5px 15px -6px rgba(0,0,0,0.73);
+
+}
+
+
+
+.totalAmount {
+  /* font or other */
+  font-size: 2rem;
+  color: #EF7E5B;
+  vertical-align: middle;
+}
+
+.totalAmount-title {
+
+  /* font or other */
+  font-size: 1rem;
+  vertical-align: middle;
+}
+
+
