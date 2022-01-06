@@ -11,19 +11,20 @@ const categoryModel = require('../../models/categoryModel')
 // router.get(/^\/$|^\/filter\?category\=.*$/, async (req, res) => {
 router.get('/', async (req, res) => {
 
-
+  let currentCategoryItem = null
   const categoryId = req.query.category
   const userId = req.user._id
   const categoryArray = await categoryModel.find({}).lean().then()
 
+
   // There are some strings in Query string inside URL, but query strings are invalid
   if (categoryId) {
 
-    const isInvalidQuery = !(categoryArray.find(item => {
+    currentCategoryItem = categoryArray.find(item => {
       return categoryId === item._id.toString()
-    }))
+    })
 
-    if (isInvalidQuery) {
+    if (!currentCategoryItem) {
       return res.redirect('/')
     }
 
@@ -32,8 +33,6 @@ router.get('/', async (req, res) => {
   const where = categoryId ?
     { userId, categoryId } :
     { userId }
-
-  console.log('output: ', categoryId, typeof categoryId)
 
   recordModel.find(where)
     .lean()
@@ -50,10 +49,9 @@ router.get('/', async (req, res) => {
         }).icon
 
       })
-
-
-      res.render('index', { totalAmount, records, categoryArray })
-
+ 
+      res.render('index', { totalAmount, records, categoryArray, currentCategoryItem })
+ 
     })
     .catch(error => console.log(error))
 

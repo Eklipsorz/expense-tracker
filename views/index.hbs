@@ -3,12 +3,14 @@
     <option value="" disabled selected>類別</option>
     <option value="-1">全部</option>
     {{#each categoryArray}}
-    <option value="{{ this._id }}">{{ this.name }}</option>
+    <option value="{{ this._id }}" {{displayDefaultOption @root.currentCategoryItem.name this.name}}>{{ this.name }}
+    </option>
     {{/each}}
   </select>
 </form>
 
 
+<p>{{currentCategoryItem.name}}</p>
 
 <div class="text-center my-2">
   <span class="totalAmount-title">總金額：</span>
