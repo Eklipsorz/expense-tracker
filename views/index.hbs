@@ -18,7 +18,7 @@
 <ul class="list-group mb-2 expense-list">
   {{#each records}}
   <div class="row mb-2">
-    <li class="list-group-item col-lg-6 col-md-8 col-sm-12 col-10 m-auto expense-list-item">
+    <li class="list-group-item col-md-8 col-sm-12 col-10 m-auto expense-list-item">
 
       <div class="d-flex justify-content-between align-items-center row">
         <div class="col-6">
@@ -29,11 +29,14 @@
           </div>
         </div>
 
-
         <div class="col-6 d-flex justify-content-end align-items-center">
           <span class="mr-4">{{ this.amount }}</span>
           <a class="btn btn-info mr-2" href="/expenses/{{ this._id }}/edit">修改</a>
-          <a class="btn btn-danger">刪除</a>
+
+
+          <form action="/expenses/{{ this._id }}?_method=DELETE" method="post" class="delete-form">
+            <button type="submit" class="btn btn-danger">刪除</button>
+          </form>
         </div>
       </div>
 

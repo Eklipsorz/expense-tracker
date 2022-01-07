@@ -39,7 +39,7 @@ router.get('/:id/edit', async (req, res) => {
 })
 
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', (req, res) => {
 
   req.body.userId = userId = req.user._id
   _id = req.params.id
@@ -49,4 +49,14 @@ router.put('/:id', async (req, res) => {
     .catch(error => console.log(error))
 })
 
+router.delete('/:id', (req, res) => {
+
+  const userId = req.user._id
+  const _id = req.params.id
+
+  recordModel.findOneAndRemove({ userId, _id })
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+
+})
 exports = module.exports = router
