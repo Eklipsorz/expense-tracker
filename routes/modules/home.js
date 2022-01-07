@@ -8,7 +8,6 @@ const categoryModel = require('../../models/categoryModel')
 
 
 
-// router.get(/^\/$|^\/filter\?category\=.*$/, async (req, res) => {
 router.get('/', async (req, res) => {
 
   let currentCategoryItem = null

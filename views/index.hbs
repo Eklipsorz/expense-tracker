@@ -34,7 +34,8 @@
           <a class="btn btn-info mr-2" href="/expenses/{{ this._id }}/edit">修改</a>
 
 
-          <form action="/expenses/{{ this._id }}?_method=DELETE" method="post" class="delete-form">
+          <form action="/expenses/{{ this._id }}?_method=DELETE" method="post" class="delete-form"
+            data-name="{{this.name}}">
             <button type="submit" class="btn btn-danger">刪除</button>
           </form>
         </div>
