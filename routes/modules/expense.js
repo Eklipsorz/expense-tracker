@@ -9,10 +9,17 @@ const recordModel = require('../../models/recordModel')
 const router = express.Router()
 
 router.get('/create', async (req, res) => {
-
-
   const categoryArray = await categoryModel.find({}).lean().then()
   res.render('create', { categoryArray })
+})
+
+router.post('/', (req, res) => {
+
+  req.body.userId = req.user._id
+  const newRecord = new recordModel(req.body)
+  newRecord.save()
+    .then(() => res.redirect('/'))
+    .catch((error) => console.log(error))
 })
 
 
