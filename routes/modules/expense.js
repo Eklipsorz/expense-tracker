@@ -30,13 +30,23 @@ router.get('/:id/edit', async (req, res) => {
   const _id = req.params.id
 
   let categoryArray = await categoryModel.find({}).lean().then()
-  let { name, date, amount, categoryId } = await recordModel.findOne({ _id, userId }).lean().then()
+  let currentRecord = await recordModel.findOne({ _id, userId }).lean().then()
 
-  date = moment(date).format('YYYY-MM-DD')
+  currentRecord.date = moment(currentRecord.date).format('YYYY-MM-DD')
 
 
-  res.render('edit', { name, date, amount, categoryArray, currentCategoryId: categoryId })
+  res.render('edit', { categoryArray, currentRecord })
 })
 
+
+router.put('/:id', async (req, res) => {
+
+  req.body.userId = userId = req.user._id
+  _id = req.params.id
+
+  recordModel.findOneAndUpdate({ _id, userId }, req.body)
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+})
 
 exports = module.exports = router
