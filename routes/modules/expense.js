@@ -17,6 +17,7 @@ router.post('/', (req, res) => {
 
   req.body.userId = req.user._id
   const newRecord = new recordModel(req.body)
+  
   newRecord.save()
     .then(() => res.redirect('/'))
     .catch((error) => console.log(error))
@@ -30,12 +31,16 @@ router.get('/:id/edit', async (req, res) => {
   const _id = req.params.id
 
   let categoryArray = await categoryModel.find({}).lean().then()
-  let currentRecord = await recordModel.findOne({ _id, userId }).lean().then()
-
-  currentRecord.date = moment(currentRecord.date).format('YYYY-MM-DD')
 
 
-  res.render('edit', { categoryArray, currentRecord })
+  recordModel.findOne({ _id, userId })
+    .lean()
+    .then((currentRecord) => {
+      currentRecord.date = moment(currentRecord.date).format('YYYY-MM-DD')
+      res.render('edit', { categoryArray, currentRecord })
+    })
+
+
 })
 
 

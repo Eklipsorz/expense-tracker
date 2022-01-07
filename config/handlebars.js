@@ -17,7 +17,6 @@ function displayDefaultOption(selectedOption, currentOption) {
     selectedOption.toString() :
     selectedOption
 
-  
   currentOption = currentOption instanceof mongoose.Types.ObjectId ?
     currentOption.toString() :
     currentOption
