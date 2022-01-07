@@ -1,3 +1,4 @@
+const mongoose = require("mongoose")
 
 
 function ifCond(parameter1, operator, parameter2, options) {
@@ -12,7 +13,15 @@ function ifCond(parameter1, operator, parameter2, options) {
 // if selectOption is same as currentOption, that means currentOption is selected by user
 function displayDefaultOption(selectedOption, currentOption) {
 
-  console.log('inside', selectedOption, currentOption)
+  selectedOption = selectedOption instanceof mongoose.Types.ObjectId ?
+    selectedOption.toString() :
+    selectedOption
+
+  
+  currentOption = currentOption instanceof mongoose.Types.ObjectId ?
+    currentOption.toString() :
+    currentOption
+
   return selectedOption === currentOption ? 'selected' : ''
 }
 

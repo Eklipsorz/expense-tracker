@@ -3,7 +3,7 @@
     <option value="" disabled selected>類別</option>
     <option value="-1">全部</option>
     {{#each categoryArray}}
-    <option value="{{ this._id }}" {{displayDefaultOption @root.currentCategoryItem.name this.name}}>{{ this.name }}
+    <option value="{{ this._id }}" {{displayDefaultOption @root.currentCategoryItem._id this._id}}>{{ this.name }}
     </option>
     {{/each}}
   </select>
@@ -32,7 +32,7 @@
 
         <div class="col-6 d-flex justify-content-end align-items-center">
           <span class="mr-4">{{ this.amount }}</span>
-          <a class="btn btn-info mr-2">修改</a>
+          <a class="btn btn-info mr-2" href="/expenses/{{ this._id }}/edit">修改</a>
           <a class="btn btn-danger">刪除</a>
         </div>
       </div>
