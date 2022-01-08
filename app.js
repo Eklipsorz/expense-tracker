@@ -1,3 +1,5 @@
+
+// third-party module 
 const express = require('express')
 const exphbs = require('express-handlebars')
 
@@ -16,6 +18,7 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
 
+// start to connect db
 const mongoose = require('mongoose')
 const db = require('./config/mongoose')
 
@@ -28,13 +31,10 @@ const app = express()
 
 // settings for view engine 
 app.engine(".hbs", exphbs(handelbarsOptions))
-
-
 app.set("view engine", ".hbs")
 
-// make handlebars engine load extra helpers
 
-
+// settings for session
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
@@ -44,13 +44,19 @@ app.use(session({
 // define a path for all static files
 app.use(express.static("public"))
 
-
+// enable to decode body inside urlencoded packet
 app.use(express.urlencoded({ extended: true }))
+
+// enable to transfer method via query string
 app.use(methodOverride('_method'))
 
+// load passport and its setting 
 usePassport(app)
+
+// load connect-flash middleware
 app.use(flash())
 
+// a middleware which accepts system message (e.g., user info, warning message)
 app.use('/', (req, res, next) => {
   res.locals.isAuthenticated = req.isAuthenticated
   res.locals.user = req.user
@@ -60,6 +66,7 @@ app.use('/', (req, res, next) => {
 
   next()
 })
+
 
 // define application layer routes
 app.use('/', routes)

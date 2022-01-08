@@ -1,6 +1,17 @@
 # Expense-Tracker
 A web application which help people record their expense and determine how to use money. The web application is based on Express.js server
 
+## Demo Website
+You could use the following info to login in
+```
+account: father@example.com
+password: 12345678
+
+account: son@example.com
+password: 12345678
+```
+[please click here](https://limitless-taiga-88318.herokuapp.com/users/login)
+
 ## Screentshots
 ### Login Page
 ![Login Page](https://res.cloudinary.com/dqfxgtyoi/image/upload/v1641627481/github/expense-tracker/loginPage_qwygkd.png)

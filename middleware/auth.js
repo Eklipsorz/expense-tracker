@@ -1,3 +1,13 @@
+/**
+ * 
+ * define a middleware for authenticating and redirect use to login page
+ * 
+ * @param {*} req (request object)
+ * @param {*} res (response object)
+ * @param {*} next (next function object)
+ * @returns 
+ */
+
 function authenticator(req, res, next) {
 
   if (req.isAuthenticated()) {
