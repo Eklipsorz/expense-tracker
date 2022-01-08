@@ -53,7 +53,7 @@ function usePassport(app) {
     clientID: process.env.FACEBOOK_ID,
     // FACEBOOK API SECRET
     clientSecret: process.env.FACEBOOK_SECRET,
-    // FACEBOOK API CALLBACK for receving authentication code
+    // FACEBOOK API CALLBACK for receving authorization code
     callbackURL: process.env.FACEBOOK_CALLBACK,
     // Specify which data field 
     profileFields: ['email', 'displayName']
